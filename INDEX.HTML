@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Budget Planner</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#f5f7f4">
+    <meta name="description" content="A clear, simple dashboard to plan your monthly budget and track your spending.">
+    <title>Budget Planner — Your money, in focus</title>
+    <link rel="stylesheet" href="STYLE.CSS">
 </head>
 
 <body>
@@ -13,154 +15,288 @@
     <div class="container">
 
         <header class="header">
-            <div>
-                <h1>💰 Budget Planner</h1>
-                <p>Manage your money. Build better habits.</p>
-            </div>
+            <a class="brand" href="#" aria-label="Budget Planner home">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M5 19c8 0 14-5 14-14C10 5 5 11 5 19Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M5 19c2-4 5-7 10-10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                    </svg>
+                </span>
+                <span>
+                    <strong>Budget planner</strong>
+                    <small>Your money, in focus</small>
+                </span>
+            </a>
 
-            <input type="month" id="monthFilter">
+            <div class="header-controls">
+                <label class="month-control">
+                    <span class="sr-only">Choose a month</span>
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                        <rect x="3.5" y="5" width="17" height="15" rx="2.5" stroke="currentColor" stroke-width="1.7" />
+                        <path d="M7.5 3.5v3M16.5 3.5v3M3.5 9h17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+                    </svg>
+                    <input type="month" id="monthFilter">
+                </label>
+            </div>
         </header>
 
-        <!-- Budget Section -->
-        <section class="budget-section">
-            <div>
-                <h2>Monthly Budget</h2>
-                <p>Set your spending limit for the month.</p>
-            </div>
+        <main>
+            <section class="welcome">
+                <p class="eyebrow">YOUR FINANCES AT A GLANCE</p>
+                <h1>A little clarity goes a long way.</h1>
+                <p>Keep track of what comes in, what goes out, and what you can save.</p>
+            </section>
 
-            <form id="budgetForm">
-                <input type="number" id="budgetAmount" placeholder="Enter budget (₹)" min="0" max="1000000000"
-                    step="0.01" required>
-                <button type="submit">Save Budget</button>
-            </form>
+            <section class="budget-section" aria-labelledby="budgetTitle">
+                <div class="budget-copy">
+                    <span class="budget-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5H19a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a3 3 0 0 1-3-3V7.5Z" stroke="currentColor" stroke-width="1.7" />
+                            <path d="M3.5 8h14a2 2 0 0 1 2 2v2h-4a2 2 0 0 0 0 4h4M16 14h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <div>
+                        <p class="budget-kicker">MONTHLY PLAN</p>
+                        <h2 id="budgetTitle">Your spending limit</h2>
+                        <p>Set a goal for the month and stay in control.</p>
+                    </div>
+                </div>
 
-            <div class="progress-container">
-                <div id="budgetProgress"></div>
-            </div>
-
-            <p id="budgetMessage">Set your monthly budget to get started.</p>
-        </section>
-
-        <!-- Summary Cards -->
-        <section class="summary">
-
-            <div class="card income-card">
-                <h3>Total Income</h3>
-                <p id="totalIncome">₹0.00</p>
-            </div>
-
-            <div class="card expense-card">
-                <h3>Total Expenses</h3>
-                <p id="totalExpenses">₹0.00</p>
-            </div>
-
-            <div class="card balance-card">
-                <h3>Remaining Budget</h3>
-                <p id="remainingBalance">₹0.00</p>
-            </div>
-
-            <div class="card net-card">
-                <h3>Net Balance</h3>
-                <p id="netBalance">₹0.00</p>
-            </div>
-
-        </section>
-
-        <!-- Transaction Form -->
-        <section class="main-content">
-
-            <div class="panel">
-                <h2>Add Transaction</h2>
-
-                <form id="transactionForm">
-
-                    <label for="description">Description</label>
-                    <input type="text" id="description" placeholder="e.g. Groceries, Salary" maxlength="100" required>
-
-                    <label for="amount">Amount (₹)</label>
-                    <input type="number" id="amount" placeholder="Enter amount" min="0.01" max="1000000000" step="0.01"
-                        required>
-
-                    <label for="type">Transaction Type</label>
-                    <select id="type">
-                        <option value="income">Income</option>
-                        <option value="expense" selected>Expense</option>
-                    </select>
-
-                    <label for="category">Category</label>
-                    <select id="category">
-                        <option value="Food">Food</option>
-                        <option value="Transport">Transport</option>
-                        <option value="Shopping">Shopping</option>
-                        <option value="Education">Education</option>
-                        <option value="Bills">Bills</option>
-                        <option value="Health">Health</option>
-                        <option value="Entertainment">Entertainment</option>
-                        <option value="Housing">Housing</option>
-                        <option value="Salary">Salary</option>
-                        <option value="Freelance">Freelance</option>
-                        <option value="Allowance">Allowance</option>
-                        <option value="Other">Other</option>
-                    </select>
-
-                    <label for="date">Date</label>
-                    <input type="date" id="date" required>
-
-                    <button type="submit" class="add-btn">
-                        + Add Transaction
-                    </button>
-
+                <form id="budgetForm">
+                    <label class="sr-only" for="budgetAmount">Monthly budget in rupees</label>
+                    <span class="currency-prefix" aria-hidden="true">₹</span>
+                    <input type="number" id="budgetAmount" placeholder="Set your monthly budget" min="0" max="1000000000"
+                        step="0.01" required>
+                    <button type="submit">Save budget</button>
                 </form>
-            </div>
 
-            <!-- Category Breakdown -->
-            <div class="panel">
-                <h2>Spending by Category</h2>
-                <div id="categoryBreakdown">
-                    <p class="empty-message">No expenses recorded yet.</p>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- Transaction History -->
-        <section class="panel history-panel">
-
-            <div class="history-header">
-                <div>
-                    <h2>Transaction History</h2>
-                    <p>Review your income and expenses.</p>
+                <div class="daily-alert-settings">
+                    <div>
+                        <p class="daily-alert-title">Daily spending alert</p>
+                        <p class="daily-alert-help">Get a popup when today's spending reaches this limit. Set to ₹0 to turn it off.</p>
+                    </div>
+                    <form id="dailyLimitForm">
+                        <label class="sr-only" for="dailyLimitAmount">Daily spending alert limit in rupees</label>
+                        <span class="currency-prefix" aria-hidden="true">₹</span>
+                        <input type="number" id="dailyLimitAmount" placeholder="Daily limit" min="0" max="1000000000"
+                            step="0.01" required>
+                        <button type="submit">Save alert</button>
+                    </form>
+                    <span id="dailyLimitStatus" class="daily-limit-status" aria-live="polite"></span>
                 </div>
 
-                <div class="history-actions">
-                    <select id="typeFilter" aria-label="Filter transactions">
-                        <option value="all">All Transactions</option>
-                        <option value="income">Income Only</option>
-                        <option value="expense">Expenses Only</option>
-                    </select>
-
-                    <button id="exportBtn" type="button" class="secondary-btn">
-                        Export CSV
-                    </button>
+                <div class="budget-progress">
+                    <div class="progress-meta">
+                        <span>Monthly spending</span>
+                        <span id="budgetMessage" aria-live="polite">Set your monthly budget to get started.</span>
+                    </div>
+                    <div class="progress-container" role="progressbar" aria-label="Monthly budget used" aria-valuemin="0" aria-valuemax="100">
+                        <div id="budgetProgress"></div>
+                    </div>
                 </div>
-            </div>
+            </section>
 
-            <div id="transactionList">
-                <p class="empty-message">No transactions yet.</p>
-            </div>
+            <section class="summary" aria-label="Monthly financial summary">
 
-        </section>
+                <div class="card income-card">
+                    <div class="card-topline">
+                        <h2>Total income</h2>
+                        <span class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M4 16.5 9 11l3.5 3.5L20 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /><path d="M14 7h6v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                        </span>
+                    </div>
+                    <p id="totalIncome">₹0.00</p>
+                </div>
+
+                <div class="card expense-card">
+                    <div class="card-topline">
+                        <h2>Total expenses</h2>
+                        <span class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M4 7.5h16M6.5 4.5h11A2.5 2.5 0 0 1 20 7v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a2.5 2.5 0 0 1 2.5-2.5Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><path d="M8 12h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></svg>
+                        </span>
+                    </div>
+                    <p id="totalExpenses">₹0.00</p>
+                </div>
+
+                <div class="card balance-card">
+                    <div class="card-topline">
+                        <h2>Budget remaining</h2>
+                        <span class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7" /><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                        </span>
+                    </div>
+                    <p id="remainingBalance">₹0.00</p>
+                </div>
+
+                <div class="card net-card">
+                    <div class="card-topline">
+                        <h2>Net balance</h2>
+                        <span class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                        </span>
+                    </div>
+                    <p id="netBalance">₹0.00</p>
+                </div>
+            </section>
+
+            <section class="main-content">
+
+                <div class="panel form-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">KEEP THINGS UP TO DATE</p>
+                            <h2>Add a transaction</h2>
+                        </div>
+                        <span class="heading-icon" aria-hidden="true">+</span>
+                    </div>
+
+                    <form id="transactionForm">
+
+                        <label for="description">Description</label>
+                        <input type="text" id="description" placeholder="e.g. Groceries, Salary" maxlength="100" required>
+
+                        <div class="form-row">
+                            <div>
+                                <label for="amount">Amount</label>
+                                <div class="input-with-prefix">
+                                    <span aria-hidden="true">₹</span>
+                                    <input type="number" id="amount" placeholder="0.00" min="0.01" max="1000000000" step="0.01"
+                                        required>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="type">Transaction type</label>
+                                <select id="type">
+                                    <option value="income">Income</option>
+                                    <option value="expense" selected>Expense</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div>
+                                <label for="category">Category</label>
+                                <select id="category">
+                                    <option value="Food">Food</option>
+                                    <option value="Transport">Transport</option>
+                                    <option value="Shopping">Shopping</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Bills">Bills</option>
+                                    <option value="Health">Health</option>
+                                    <option value="Entertainment">Entertainment</option>
+                                    <option value="Housing">Housing</option>
+                                    <option value="Salary">Salary</option>
+                                    <option value="Freelance">Freelance</option>
+                                    <option value="Allowance">Allowance</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="date">Date</label>
+                                <input type="date" id="date" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="add-btn">
+                            Add transaction
+                            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                        </button>
+
+                    </form>
+                </div>
+
+                <div class="panel category-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">WHERE IT GOES</p>
+                            <h2>Spending by category</h2>
+                        </div>
+                        <span class="heading-icon category-heading-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 5-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                        </span>
+                    </div>
+                    <div id="categoryBreakdown">
+                        <p class="empty-message">No expenses recorded yet.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel history-panel">
+                <div class="history-header">
+                    <div>
+                        <p class="eyebrow">YOUR RECENT ACTIVITY</p>
+                        <h2>Transaction history</h2>
+                        <p>Review your income and expenses.</p>
+                    </div>
+
+                    <div class="history-actions">
+                        <label class="sr-only" for="typeFilter">Filter transactions by type</label>
+                        <select id="typeFilter">
+                            <option value="all">All transactions</option>
+                            <option value="income">Income only</option>
+                            <option value="expense">Expenses only</option>
+                        </select>
+
+                        <button id="exportBtn" type="button" class="secondary-btn">
+                            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 15v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                            Export CSV
+                        </button>
+                    </div>
+                </div>
+
+                <div id="transactionList">
+                    <p class="empty-message">No transactions yet.</p>
+                </div>
+            </section>
+        </main>
 
         <footer>
-            <p>Personal Budget Planner | Your finances, organized.</p>
+            <p><span class="footer-brand">Budget planner</span> <span aria-hidden="true">·</span> Your finances, organized.</p>
             <button id="clearBtn" type="button" class="clear-btn">
-                Clear All Data
+                Clear all data
             </button>
         </footer>
 
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <div id="dailyAlertPopup" class="daily-alert" role="alert" aria-live="assertive" hidden>
+        <span class="daily-alert-icon" aria-hidden="true">!</span>
+        <p id="dailyAlertMessage"></p>
+        <button id="dismissDailyAlert" type="button" aria-label="Dismiss daily spending alert">&times;</button>
+    </div>
 
+    <section id="financeAssistant" class="assistant-panel" aria-label="Budget assistant" hidden>
+        <header class="assistant-header">
+            <span class="assistant-avatar" aria-hidden="true">✳</span>
+            <div>
+                <h2>Budget assistant</h2>
+                <p>Private, on-device help</p>
+            </div>
+            <button id="closeAssistant" type="button" class="assistant-close" aria-label="Close assistant">&times;</button>
+        </header>
+        <div id="assistantMessages" class="assistant-messages" role="log" aria-live="polite" aria-relevant="additions">
+            <div class="assistant-message assistant-message-bot">
+                Hi! I can help you add an expense or income, set your monthly budget, or check your spending. Try “spent 250 on lunch” or ask “how much did I spend this month?”
+            </div>
+        </div>
+        <div class="assistant-suggestions" aria-label="Suggested questions">
+            <button type="button" data-assistant-prompt="Show my spending summary">Summary</button>
+            <button type="button" data-assistant-prompt="Show recent transactions">Recent activity</button>
+        </div>
+        <form id="assistantForm" class="assistant-form">
+            <label class="sr-only" for="assistantInput">Ask the budget assistant</label>
+            <input id="assistantInput" type="text" maxlength="300" placeholder="Ask or add a transaction…" autocomplete="off" required>
+            <button type="submit" aria-label="Send message">
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="m4 4 17 8-17 8 3-8-3-8Zm3 8h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </button>
+        </form>
+        <p class="assistant-privacy">Your messages and financial data stay in this browser.</p>
+    </section>
+    <button id="assistantToggle" type="button" class="assistant-toggle" aria-controls="financeAssistant" aria-expanded="false">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M12 3.5v3m0 11v3m8.5-8.5h-3m-11 0h-3m14.01-6.01-2.12 2.12m-7.78 7.78-2.12 2.12m12.02 0-2.12-2.12m-7.78-7.78L6.49 5.99" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" /></svg>
+        <span>Ask assistant</span>
+    </button>
+
+    <script src="SCRIPT.JS"></script>
+</body>
 </html>
